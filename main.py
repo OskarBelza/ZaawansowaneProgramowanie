@@ -1,4 +1,4 @@
-from struktury import ListaJednokierunkowa, ListaDwukierunkowa
+from struktury import ListaJednokierunkowa, ListaDwukierunkowa, DrzewoBinarne
 from moduly import MenadzerHistorii, SystemZgloszen
 
 
@@ -56,6 +56,32 @@ def test_menedzer_i_system():
     sysz.obsluz_nastepne()
 
 
+def test_drzewo_binarne():
+    print("\n=== TEST: Drzewo BST ===")
+    drzewo = DrzewoBinarne()
+
+    print("\n--- Wstawianie iteracyjne ---")
+    for x in [8, 3, 10, 1, 6, 14, 4, 7, 13]:
+        drzewo.wstaw(x, "iteracyjnie")
+        print("LVR (inorder):", drzewo.LVR())
+
+    print("\n--- Wstawianie rekurencyjne ---")
+    for x in [2, 5, 9, 15]:
+        drzewo.wstaw(x, "rekurencyjnie")
+        print("LVR (inorder):", drzewo.LVR())
+
+    print("\n--- Przejścia drzewa ---")
+    print("VLR (preorder):", drzewo.VLR())
+    print("LVR (inorder):", drzewo.LVR())
+    print("LRV (postorder):", drzewo.LRV())
+
+    print("\n--- Usuwanie węzłów ---")
+    for x in [1, 6, 8, 14]:
+        print(f"Usuwam: {x}")
+        drzewo.usun(x)
+        print("Aktualne LVR:", drzewo.LVR())
+
+
 if __name__ == "__main__":
     print("\n" + "=" * 60)
     print("START TESTÓW PROJEKTOWYCH")
@@ -64,6 +90,7 @@ if __name__ == "__main__":
     test_lista_jednokierunkowa()
     test_lista_dwukierunkowa()
     test_menedzer_i_system()
+    test_drzewo_binarne()
 
     print("\n" + "=" * 60)
     print("KONIEC TESTÓW")
